@@ -31,7 +31,6 @@ class MainActivity : AppCompatActivity() {
         binding.btRegister.setOnClickListener { haceRegistro() }
         binding.btLogin.setOnClickListener { haceLogin() }
 
-        setContentView(R.layout.activity_main)
     }
     private fun haceLogin() {
         val email = binding.etCorreo.text.toString()
