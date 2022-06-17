@@ -26,16 +26,16 @@ class AddLugarFragment : Fragment() {
         lugarViewModel = ViewModelProvider(this)[LugarViewModel::class.java]
         _binding = FragmentAddLugarBinding.inflate(inflater,container,false)
         //Se crea la funcion para agregar lugares
-        binding.btAdd.setOnClickListener { addLugar() }
+        binding.btAgregar.setOnClickListener { addLugar() }
 
         return binding.root
     }
 
     private fun addLugar() {
-        val nombre = binding.etNombre.toString()
-        val correo = binding.etCorreo.toString()
-        val telefono = binding.etTelefono.toString()
-        val web = binding.etWeb.toString()
+        val nombre = binding.etNombre.text.toString()
+        val correo = binding.etCorreo.text.toString()
+        val telefono = binding.etTelefono.text.toString()
+        val web = binding.etWeb.text.toString()
         if (nombre.isNotEmpty()){
             val lugar = Lugar(0,nombre,telefono,correo,web,0.0,0.0,0.0,"","")
             lugarViewModel.addLugar(lugar)
