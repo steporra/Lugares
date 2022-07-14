@@ -29,7 +29,7 @@ class LugarFragment : Fragment() {
         lugarViewModel = ViewModelProvider(this)[LugarViewModel::class.java]
         _binding = FragmentLugarBinding.inflate(inflater,container,false)
 
-        //Se programa la accion para pasar a la de pantalla AddLugar
+        //Se programa la accion para pasar a la pantalla AddLugar
         binding.addLugarButton.setOnClickListener {
             findNavController().navigate(R.id.action_nav_lugar_to_addLugarFragment)
 
