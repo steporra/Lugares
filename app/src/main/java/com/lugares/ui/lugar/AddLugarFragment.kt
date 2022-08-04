@@ -12,7 +12,6 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -81,54 +80,47 @@ class AddLugarFragment : Fragment() {
     }
 
     private fun subeAudio() {
-
-            val audioFile = audioUtiles.audioFile
-            if (audioFile.exists() && audioFile.isFile && audioFile.canRead()) {
-                val ruta = Uri.fromFile(audioFile)
-                val rutaNube =
-                    "lugaresApp/${Firebase.auth.currentUser?.email}/audios/${audioFile.name}"
-                val referencia: StorageReference = Firebase.storage.reference.child(rutaNube)
-                referencia.putFile(ruta)
-                    .addOnSuccessListener {
-                        referencia.downloadUrl
-                            .addOnSuccessListener {
-                                val rutaAudio = it.toString()
-                                subeImagen(rutaAudio)
-                            }
-                    }
-                    .addOnFailureListener {
-                        //Error al grabar audio en la nube...
-                        subeImagen("")
-                    }
-            } else { //Por alguna razón no hay archivo de audio...
-                subeImagen("")
-            }
-
+        val audioFile = audioUtiles.audioFile
+        if (audioFile.exists() && audioFile.isFile && audioFile.canRead()) {
+            val ruta = Uri.fromFile(audioFile)
+            val rutaNube = "lugaresApp/${Firebase.auth.currentUser?.email}/audios/${audioFile.name}"
+            val referencia: StorageReference = Firebase.storage.reference.child(rutaNube)
+            referencia.putFile(ruta)
+                .addOnSuccessListener {
+                    referencia.downloadUrl
+                        .addOnSuccessListener {
+                            val rutaAudio = it.toString()
+                            subeImagen(rutaAudio)
+                        }
+                }
+                .addOnFailureListener {
+                    subeImagen("")
+                }
+        } else {
+            subeImagen("")
+        }
     }
     private fun subeImagen(rutaAudio: String) {
         binding.msgMensaje.text = getString(R.string.msg_subiendo_imagen)
-
-            val imagenFile = imagenUtiles.imagenFile
-            if (imagenFile.exists() && imagenFile.isFile && imagenFile.canRead()) {
-                val ruta = Uri.fromFile(imagenFile)
-                val rutaNube =
-                    "lugaresApp/${Firebase.auth.currentUser?.email}/imagenes/${imagenFile.name}"
-                val referencia: StorageReference = Firebase.storage.reference.child(rutaNube)
-                referencia.putFile(ruta)
-                    .addOnSuccessListener {
-                        referencia.downloadUrl
-                            .addOnSuccessListener {
-                                val rutaImagen = it.toString()
-                                addLugar(rutaAudio, rutaImagen)
-                            }
-                    }
-                    .addOnFailureListener {
-                        addLugar(rutaAudio, "")
-                    }
-            } else {
-                addLugar(rutaAudio, "")
-            }
-
+        val imagenFile = imagenUtiles.imagenFile
+        if (imagenFile.exists() && imagenFile.isFile && imagenFile.canRead()) {
+            val ruta = Uri.fromFile(imagenFile)
+            val rutaNube = "lugaresApp/${Firebase.auth.currentUser?.email}/imagenes/${imagenFile.name}"
+            val referencia: StorageReference = Firebase.storage.reference.child(rutaNube)
+            referencia.putFile(ruta)
+                .addOnSuccessListener {
+                    referencia.downloadUrl
+                        .addOnSuccessListener {
+                            val rutaImagen = it.toString()
+                            addLugar(rutaAudio,rutaImagen)
+                        }
+                }
+                .addOnFailureListener {
+                    addLugar(rutaAudio, "")
+                }
+        } else {
+            addLugar(rutaAudio,"")
+        }
     }
 
     private fun addLugar(rutaAudio: String, rutaImagen: String) {
@@ -137,7 +129,7 @@ class AddLugarFragment : Fragment() {
         val telefono = binding.etTelefono.text.toString()
         val web = binding.etWeb.text.toString()
         if (nombre.isNotEmpty()){
-            val lugar = Lugar("",nombre,telefono,correo,web,0.0,0.0,0.0,"","")
+            val lugar = Lugar("",nombre,correo,telefono,web,0.0,0.0,0.0,rutaAudio,rutaImagen)
             lugarViewModel.saveLugar(lugar)
             Toast.makeText(requireContext(), getString(R.string.lugarAdded), Toast.LENGTH_SHORT).show()
             findNavController().navigate(R.id.action_addLugarFragment_to_nav_lugar)
