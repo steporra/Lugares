@@ -69,7 +69,7 @@ class UpdateLugarFragment : Fragment() {
         } else {
             binding.btPlay.isEnabled=false
         }
-        //Si hay ruta de imagen...se dibuja
+        //Si hay ruta de imagen...entonces se dibuja
         if (args.lugar.rutaImagen?.isNotEmpty()==true){
             Glide.with(requireContext())
                 .load(args.lugar.rutaImagen)
