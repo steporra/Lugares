@@ -1,11 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">Lugares</string>
-    <string name="default_web_client_id" translatable="false">718874327365-ialpta9v6rj9kg8ejhpaeivg8bhgds7u.apps.googleusercontent.com</string>
-    <string name="tv_correo">Correo</string>
-    <string name="tv_clave">Contraseña</string>
-    <string name="msg_fallo_registro">Error registrando usuario</string>
-    <string name="msg_fallo_login">Error autenticando usuario</string>
-    <string name="title_activity_principal">Principal</string>
+    <string name="tv_correo">Email</string>
+    <string name="tv_clave">Password</string>
+    <string name="msg_fallo_registro">Error</string>
+    <string name="msg_fallo_login">Error </string>
+    <string name="title_activity_principal">Main</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -18,15 +17,15 @@
     <string name="menu_slideshow">Slideshow</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="msg_nombre">Nombre del lugar</string>
-    <string name="msg_correo">Correo (abc@abc.com)</string>
-    <string name="msg_telefono">Teléfono (9999–99999)</string>
-    <string name="msg_web">Sitio Web</string>
-    <string name="bt_agregar">Agregar Lugar</string>
-    <string name="bt_actualizar">Actualizar Lugar</string>
-    <string name="lugarAdded">Lugar agregado</string>
+    <string name="msg_nombre">Name</string>
+    <string name="msg_correo">Email (abc@abc.com)</string>
+    <string name="msg_telefono">Phone (9999–99999)</string>
+    <string name="msg_web">Website</string>
+    <string name="bt_agregar">Add</string>
+    <string name="bt_actualizar">Update</string>
+    <string name="lugarAdded">Added</string>
     <string name="noData">Faltan datos</string>
-    <string name="delete">Eliminar Lugar</string>
+    <string name="delete">Delete</string>
     <string name="seguroBorrar">¿Seguro que desea eliminar</string>
     <string name="si">si</string>
     <string name="no">no</string>

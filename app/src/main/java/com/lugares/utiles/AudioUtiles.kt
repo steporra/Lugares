@@ -25,6 +25,12 @@ class AudioUtiles(
     private val msgIniciaNotaAudio: String,
     private val msgDetieneNotaAudio: String) {
 
+    //Para saber si se grabo un audio
+    private var audioGrabado:Boolean=false
+    fun getAudioGrabado():Boolean {
+        return audioGrabado
+    }
+
     init {
         btAccion.setOnClickListener { grabaStop() }
         btPlay.setOnClickListener { playNota() }
@@ -86,6 +92,7 @@ class AudioUtiles(
         btDelete.isEnabled = true
         mediaRecorder?.stop()
         mediaRecorder?.release()
+        audioGrabado = true
         Toast.makeText(contexto,msgDetieneNotaAudio,Toast.LENGTH_SHORT).show()
         btAccion.setImageResource(R.drawable.ic_mic)
     }
@@ -109,6 +116,7 @@ class AudioUtiles(
                 audioFile.delete()
                 btPlay.isEnabled = false
                 btDelete.isEnabled = false
+                audioGrabado = false
             }
         } catch (e: IOException) {
             e.printStackTrace()

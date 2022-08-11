@@ -27,7 +27,7 @@ class UpdateLugarFragment : Fragment() {
 
     private var _binding: FragmentUpdateLugarBinding? = null
     private val binding get() = _binding!!
-    //Para escuchar un audio
+    //Para escuchar un audio grabado
     private lateinit var mediaPlayer: MediaPlayer
 
     override fun onCreateView(
