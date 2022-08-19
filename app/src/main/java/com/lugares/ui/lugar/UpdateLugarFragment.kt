@@ -51,9 +51,9 @@ class UpdateLugarFragment : Fragment() {
 
         binding.btEmail.setOnClickListener {escribirCorreo()}
         binding.btPhone.setOnClickListener {llamarLugar()}
-        //binding.btWhatsapp.setOnClickListener {enviarWhatsapp()}
+        binding.btWhatsapp.setOnClickListener {enviarWhatsapp()}
         binding.btWeb.setOnClickListener {verWeb()}
-        //binding.btLocation.setOnClickListener {verMapa()}
+        binding.btLocation.setOnClickListener {verMapa()}
 
         //Se indica que en esta pantalla se agrega una opcion de menu
 
@@ -79,6 +79,38 @@ class UpdateLugarFragment : Fragment() {
 
         return binding.root
     }
+
+    private fun enviarWhatsapp() {
+        //Se recupera el numero de telefono
+        val telefono = binding.etTelefono.text.toString()
+        if (telefono.isNotEmpty()){
+            val sendIntent = Intent(Intent.ACTION_VIEW)
+            val uri = "whatsapp://send?phone=506$telefono&text="+getString(R.string.msg_saludos)
+            sendIntent.setPackage("com.whatsapp")
+            sendIntent.data= Uri.parse(uri)
+            startActivity(sendIntent)
+
+        } else {
+            Toast.makeText(
+                requireContext(),
+                getString(R.string.msg_datos), Toast.LENGTH_SHORT
+            ).show()
+        }
+    }
+
+    private fun verMapa() {
+       val latitud = binding.tvLatitud.text.toString().toDouble()
+       val longitud = binding.tvLongitud.text.toString().toDouble()
+        if (latitud.isFinite() && longitud.isFinite()) {
+            val location = Uri.parse("geo:$latitud,$longitud?z18")
+            val mapIntent = Intent(Intent.ACTION_VIEW, location)
+            startActivity(mapIntent)
+        }else{
+
+        }
+
+    }
+
     private fun llamarLugar(){
         //Se recupera el numero de telefono
         val recurso = binding.etTelefono.text.toString()
